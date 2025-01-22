@@ -609,6 +609,6 @@ async def premium_callback(client, callback_query):
 
 @Client.on_callback_query(filters.regex("refer"))
 async def refer_callback(client, callback_query):
-    await callback_query.message.reply("Refer your friends and earn rewards! Share this link: https://t.me/your_bot_username?start=referral_code")
+    await callback_query.message.reply("Refer your friends and earn rewards! Share this link: https://t.me/ssd_auto_filter_bot?start=referral_code")
 
 
