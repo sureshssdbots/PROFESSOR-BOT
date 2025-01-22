@@ -603,6 +603,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
+@Client.on_callback_query(filters.regex("premium"))
+async def premium_callback(client, callback_query):
+    await callback_query.message.reply("Welcome to the Premium section! 🚀 Contact support for more details.")
 
+@Client.on_callback_query(filters.regex("refer"))
+async def refer_callback(client, callback_query):
+    await callback_query.message.reply("Refer your friends and earn rewards! Share this link: https://t.me/your_bot_username?start=referral_code")
 
 
