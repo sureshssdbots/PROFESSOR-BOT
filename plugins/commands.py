@@ -148,10 +148,53 @@ async def all_plans_callback(client, callback_query):
         reply_markup=InlineKeyboardMarkup(buttons)
         )
 
+
+
 @Client.on_callback_query(filters.regex("refer"))
 async def refer_callback(client, callback_query):
-    await callback_query.message.reply("Refer your friends and earn rewards! Share this link: https://t.me/ssd_auto_filter_bot?start=referral_code")
+    user_id = callback_query.from_user.id  # यूजर का टेलीग्राम ID
+    user_name = callback_query.from_user.first_name  # यूजर का नाम
+    referral_link = f"https://t.me/ssd_auto_filter_bot?start=referral_{user_id}"  # कस्टम रेफरल लिंक
 
+    # बटन बनाएं
+    buttons = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("📤 Share Referral Link", url=f"https://t.me/share/url?url={referral_link}"),
+                InlineKeyboardButton("📊 Referral Points", callback_data="referral_points"),
+                InlineKeyboardButton("🔙 Back", callback_data="main_menu")
+            ]
+        ]
+    )
+
+    # इमेज और मैसेज भेजें
+    image_url = "https://www.imghippo.com/i/vfLB1215hnI.jpg"  # अपनी इमेज URL यहां जोड़ें
+    await callback_query.message.reply_photo(
+        photo=image_url,
+        caption=(
+            f"👋 **Hey {user_name}**, \n\n"
+            f"**Your Referral Link:**\n{referral_link}\n\n"
+            "Share this link with your friends. Each time they join, you will get **10 referral points**, "
+            "and after **100 points**, you will receive a **1-month premium subscription**. 🎉"
+        ),
+        reply_markup=buttons
+    )
+
+
+@Client.on_callback_query(filters.regex("referral_points"))
+async def referral_points_callback(client, callback_query):
+    user_id = callback_query.from_user.id
+    # यहां डेटाबेस या लॉजिक का उपयोग करके यूजर के रेफरल पॉइंट्स प्राप्त करें
+    referral_points = 50  # Placeholder value
+    await callback_query.message.reply(
+        f"🎯 **Your Referral Points:** {referral_points}\n\n"
+        "Keep sharing your referral link to earn more points!"
+    )
+
+
+@Client.on_callback_query(filters.regex("main_menu"))
+async def back_to_main_menu(client, callback_query):
+    await callback_query.message.reply("🔙 Back to Main Menu", reply_markup=main_menu_buttons())
 
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
