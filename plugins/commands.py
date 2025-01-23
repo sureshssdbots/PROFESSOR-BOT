@@ -180,17 +180,26 @@ async def refer_callback(client, callback_query):
         reply_markup=buttons
     )
 
-
 @Client.on_callback_query(filters.regex("referral_points"))
 async def referral_points_callback(client, callback_query):
     user_id = callback_query.from_user.id
-    # यहां डेटाबेस या लॉजिक का उपयोग करके यूजर के रेफरल पॉइंट्स प्राप्त करें
-    referral_points = 50  # Placeholder value
+
+    # डेटाबेस से यूजर डेटा प्राप्त करें
+    user_data = users_collection.find_one({"user_id": user_id})
+    
+    # यदि यूजर डेटा नहीं मिला
+    if not user_data:
+        await callback_query.message.reply("❌ You are not registered in the referral system.")
+        return
+
+    # रेफरल पॉइंट्स प्राप्त करें
+    referral_points = user_data.get("referral_points", 0)
+
+    # जवाब भेजें
     await callback_query.message.reply(
         f"🎯 **Your Referral Points:** {referral_points}\n\n"
         "Keep sharing your referral link to earn more points!"
     )
-
 
 @Client.on_callback_query(filters.regex("main_menu"))
 async def back_to_main_menu(client, callback_query):
