@@ -94,7 +94,58 @@ async def start(client, message):
 
 @Client.on_callback_query(filters.regex("premium"))
 async def premium_callback(client, callback_query):
-    await callback_query.message.reply("Welcome to the Premium section! 🚀 Contact support for more details.")
+    username = callback_query.from_user.username
+    image_url = "https://your-image-url.com/premium_image.jpg"  # यहां अपनी इमेज का URL डालें
+
+    buttons = [
+        [
+            InlineKeyboardButton("📸 Send Screenshot", callback_data="send_screenshot")
+        ]
+    ]
+
+    await callback_query.message.reply_photo(
+        photo=image_url,
+        caption=f"👋 ʜᴇʏ @{username},\n\n"
+                f"🎁 ᴘʀᴇᴍɪᴜᴍ ғᴇᴀᴛᴜʀᴇ ʙᴇɴɪꜰɪᴛꜱ:\n\n"
+                f"❏ ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋꜱ\n"
+                f"❏ ɢᴇᴛ ᴅɪʀᴇᴄᴛ ғɪʟᴇs\n"
+                f"❏ ᴀᴅ-ғʀᴇᴇ ᴇxᴘᴇʀɪᴇɴᴄᴇ\n"
+                f"❏ ʜɪɢʜ-sᴘᴇᴇᴅ ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ\n"
+                f"❏ ᴍᴜʟᴛɪ-ᴘʟᴀʏᴇʀ sᴛʀᴇᴀᴍɪɴɢ ʟɪɴᴋs\n"
+                f"❏ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏᴠɪᴇs ᴀɴᴅ sᴇʀɪᴇs\n"
+                f"❏ ꜰᴜʟʟ ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ\n"
+                f"❏ ʀᴇǫᴜᴇsᴛ ᴡɪʟʟ ʙᴇ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ 𝟷ʜ [ ɪꜰ ᴀᴠᴀɪʟᴀʙʟᴇ ]\n\n"
+                f"⛽️ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ: /myplan\n\n"
+                f"👇 ᴀʟʟ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴs & ᴘʀɪᴄᴇs 👇",
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
+
+@Client.on_callback_query(filters.regex("all_plans"))
+async def all_plans_callback(client, callback_query):
+    username = callback_query.from_user.username
+    image_url = "https://your-image-url.com/plans_image.jpg"  # यहां अपनी इमेज का URL डालें
+
+    buttons = [
+        [
+            InlineKeyboardButton("📸 Send Screenshot", callback_data="send_screenshot")
+        ]
+    ]
+
+    await callback_query.message.reply_photo(
+        photo=image_url,
+        caption=f"👋 ʜᴇʏ @{username},\n\n"
+                f"🎖️ ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴꜱ:\n\n"
+                f"10 ʀᴜᴘᴇᴇ ᴘᴇʀ 𝒘𝒆𝒆𝒌 👻\n"
+                f"39 ʀᴜᴘᴇᴇs ғᴏʀ ᴏɴᴇ ᴍᴏɴᴛʜ 😚\n"
+                f"79 ʀᴜᴘᴇᴇs ғᴏʀ ᴛᴡᴏ ᴍᴏɴᴛʜ𝒔 😗\n\n"
+                f"🅄🄿🄸 🆔 👇\n"
+                f"sureshjaat33772@okaxis [ᴛᴀᴘ ᴛᴏ ᴄᴏᴘʏ]\n\n"
+                f"⛽️ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ: /myplan\n\n"
+                f"🏷️ ᴘʀᴇᴍɪᴜᴍ ᴘʀᴏᴏꜰ\n\n"
+                f"‼️ ᴍᴜsᴛ sᴇɴᴅ sᴄʀᴇᴇɴsʜᴏᴛ ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ.\n"
+                f"‼️ ɢɪᴠᴇ ᴜꜱ ꜱᴏᴍᴇᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴘʀᴇᴍɪᴜᴍ ʟɪꜱᴛ.",
+        reply_markup=InlineKeyboardMarkup(buttons)
+        )
 
 @Client.on_callback_query(filters.regex("refer"))
 async def refer_callback(client, callback_query):
