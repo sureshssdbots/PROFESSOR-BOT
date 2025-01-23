@@ -92,6 +92,14 @@ async def start(client, message):
     await client.send_cached_media(chat_id=message.from_user.id, file_id=file_id, caption=f_caption, protect_content=True if pre == 'filep' else False,)
                     
 
+@Client.on_callback_query(filters.regex("premium"))
+async def premium_callback(client, callback_query):
+    await callback_query.message.reply("Welcome to the Premium section! 🚀 Contact support for more details.")
+
+@Client.on_callback_query(filters.regex("refer"))
+async def refer_callback(client, callback_query):
+    await callback_query.message.reply("Refer your friends and earn rewards! Share this link: https://t.me/ssd_auto_filter_bot?start=referral_code")
+
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
