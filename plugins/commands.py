@@ -98,7 +98,7 @@ async def premium_callback(client, callback_query):
 
     buttons = [
         [
-            InlineKeyboardButton("📸 Send Screenshot", url="https://t.me/suresh_jaat_7")
+            InlineKeyboardButton("All plans and price", callback_data="all_plans")
         ]
     ]
 
